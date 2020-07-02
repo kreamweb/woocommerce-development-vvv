@@ -108,59 +108,23 @@ PHP
   # **
 
   echo 'Installing plugins...\n'
-  wp plugin install woocommerce --activate --allow-root
-  wp plugin install wc-invoice-gateway --allow-root
   wp plugin install wordpress-importer --activate --allow-root
-  wp plugin install homepage-control --activate --allow-root
-  wp plugin install customizer-reset-by-wpzoom --activate --allow-root
   wp plugin install user-switching --activate --allow-root
-  wp plugin install regenerate-thumbnails --activate --allow-root
   wp plugin install wp-mail-logging --allow-root
   wp plugin install wp-crontrol --activate --allow-root
-  wp plugin install loco-translate --allow-root
   wp plugin install query-monitor --allow-root
-  wp plugin install jetpack --activate --allow-root
-  wp plugin install developer --activate --allow-root
-  wp plugin install debug-bar --activate --allow-root
-  wp plugin install debug-bar-console --activate --allow-root
-  wp plugin install debug-bar-cron --activate --allow-root
-  wp plugin install debug-bar-extender --activate --allow-root
-  wp plugin install rewrite-rules-inspector --activate --allow-root
-  wp plugin install log-deprecated-notices --allow-root
-  wp plugin install log-viewer --allow-root
-  wp plugin install wordpress-beta-tester --allow-root
 
   # Delete unrequired default plugins
   echo "Deleting unrequired default plugins..."
   wp plugin delete hello   --allow-root
   wp plugin delete akismet --allow-root
 
-  # Add Github hosted plugins.
-  echo 'Installing public remote Git repo software installs...\n'
-  git clone --recursive https://github.com/mattyza/matty-theme-quickswitch.git        wp-content/plugins/matty-theme-quickswitch
-  wp plugin activate matty-theme-quickswitch --allow-root
 
-  git clone --recursive https://github.com/woocommerce/woocommerce-beta-tester.git    wp-content/plugins/woocommerce-beta-tester
+  git clone --recursive https://github.com/woocommerce/woocommerce.git    wp-content/plugins/woocommerce
 
   # **
   # Unit Data
   # **
-
-  # Import the WordPress unit data.
-  echo 'Installing WordPress theme unit test data...\n'
-  curl -O https://wpcom-themes.svn.automattic.com/demo/theme-unit-test-data.xml
-  wp import theme-unit-test-data.xml --authors=create --allow-root
-  rm theme-unit-test-data.xml
-
-  # Import the WooCommerce unit data.
-  echo 'Installing WooCommerce dummy product data...\n'
-  curl -O https://raw.githubusercontent.com/woocommerce/woocommerce/master/dummy-data/dummy-data.xml
-  wp import dummy-data.xml --authors=create --allow-root
-  rm dummy-data.xml
-
-  # Replace any urls from the WordPress unit data
-  echo 'Adjusting urls in database...\n'
-  wp search-replace 'wpthemetestdata.wordpress.com' 'local.woocommerce.dev' --skip-columns=guid --allow-root
 
   # Update the sites permalink structure
   echo 'Update permalink structure...\n'
